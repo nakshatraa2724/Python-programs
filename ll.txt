@@ -1,0 +1,100 @@
+ex3a)
+
+class BookStack:
+    def __init__(self, max_size=100):
+        self.stack = []
+        self.max_size = max_size
+
+    def push(self, book_title):
+        if len(self.stack) >= self.max_size:
+            print("Stack Overflow! Cannot add more books.")
+        else:
+            self.stack.append(book_title)
+            print(f'"{book_title}" added to the stack.')
+
+    def pop(self):
+        if len(self.stack) == 0:
+            print("Stack Underflow! No books to retrieve.")
+            return None
+        else:
+            book_title = self.stack.pop()
+            print(f'"{book_title}" retrieved from the stack.')
+            return book_title
+
+    def display(self):
+        if len(self.stack) == 0:
+            print("Stack is empty.")
+        else:
+            print("Books in stack (top to bottom):")
+            for book in reversed(self.stack):
+                print(f"- {book}")
+
+
+library_stack = BookStack()
+
+library_stack.push("THE NIGHTMARE")
+library_stack.push("THE HISTORY OF GREAT ABDUL KALAM")
+library_stack.push("1984")
+library_stack.push("THE DREAM BOOK")
+
+library_stack.display()
+
+retrieved = library_stack.pop()
+library_stack.display()
+
+ex3b)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top
+        self.top = new_node
+        print(f"Pushed: {data}")
+
+    def pop(self):
+        if self.top is None:
+            print("Stack Underflow - Cannot pop from empty stack")
+            return None
+        popped_data = self.top.data
+        self.top = self.top.next
+        print(f"Popped: {popped_data}")
+        return popped_data
+
+    def peek(self):
+        if self.top is None:
+            print("Stack is empty")
+            return None
+        return self.top.data
+
+    def display(self):
+        current = self.top
+        if current is None:
+            print("Stack is empty")
+            return
+        print("Stack from top to bottom:")
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("NULL")
+if __name__ == "__main__":
+    stack = Stack()
+    stack.push("THE INDIAN WARRIORS")
+    stack.push("GREAT FREEDOM FRIGHTERS")
+    stack.push("THE GREEDY LADY")
+    stack.display()
+
+    stack.pop()
+    stack.display()
+
+    print("Top of stack:", stack.peek())
+
+
+
